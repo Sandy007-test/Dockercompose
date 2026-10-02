@@ -1,2 +1,15 @@
-.env
+# Virtual Environment
+bin/
+include/
+lib/
+lib64/
+pyvenv.cfg
+.venv/
 
+# Environment Secrets
+.env
+.env.local
+
+# Python cache
+__pycache__/
+*.pyc
