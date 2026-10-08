@@ -1,0 +1,22 @@
+services:
+  backend:
+    build:
+      context: ./python-app
+      dockerfile: Dockerfile
+    image: web-app:${IMAGE_TAG}
+    environment:
+      - PYTHONUNBUFFERED=1
+    expose:
+      - "5000"
+    restart: unless-stopped
+
+  nginx-proxy:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    image: nginx-proxy:${IMAGE_TAG}
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
