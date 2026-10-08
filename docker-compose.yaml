@@ -3,18 +3,18 @@ services:
     build:
       context: ./python-app
       dockerfile: Dockerfile
-    image: web-app:${IMAGE_TAG}
+    image: ${REGISTRY_URL}/backend:${IMAGE_TAG}
     environment:
       - PYTHONUNBUFFERED=1
     expose:
       - "5000"
     restart: unless-stopped
 
-  nginx-proxy:
+  nginx:
     build:
       context: ./nginx
       dockerfile: Dockerfile
-    image: nginx-proxy:${IMAGE_TAG}
+    image: ${REGISTRY_URL}/nginx:${IMAGE_TAG}
     ports:
       - "80:80"
     depends_on:
